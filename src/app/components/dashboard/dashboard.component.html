@@ -1,18 +1,32 @@
 <div class="grid">
     <div class="col-12 lg:col-8 xl:col-8">
         <div class="card mb-0">
-            <div class="mb-2 flex justify-content-between">
+            <div class="mb-4 flex justify-content-between">
                 <button pButton pRipple type="button" label="Lancer la formation" class="mr-2 mb-2"></button>
                 <button pButton pRipple type="button" label="Arrêter la formation" class="p-button-danger mr-2 mb-2"></button>
                 <button pButton pRipple type="button" label="Redémarrer la formation" class="p-button-warning mr-2 mb-2"></button>
             </div>
-            <div class="mb-2">
+            <div class="mb-4">
+                <p-selectButton [options]="learninglevel" [(ngModel)]="selectedLevel" optionLabel="label" optionValue="value"></p-selectButton>
+            </div>
+            <div class="mb-4">
                 <h5>Taux de réussite : {{succesLevel}}%</h5>
                 <p-slider [(ngModel)]="succesLevel" ></p-slider>
             </div>
-            <div>
+            <div class="mb-4">
                 <h5>Taux d'erreur : {{errorLevel}}%</h5>
                 <p-slider [(ngModel)]="errorLevel" ></p-slider>
+            </div>
+            <div class="mb-4">
+                <h5>Nombre de caisse</h5>
+                <p-inputNumber [(ngModel)]="crateNumber" [showButtons]="true" [min]="1" [max]="10"></p-inputNumber>
+            </div>
+            <div class="mb-4">
+                <h5>Temps de formation</h5>
+                <div>
+                    <p-inputNumber class="mr-4" [(ngModel)]="minutes" [showButtons]="true" [min]="1" [max]="59" suffix=" minutes"></p-inputNumber>
+                    <p-inputNumber [(ngModel)]="secondes" [showButtons]="true" [min]="0" [max]="59" suffix=" secondes"></p-inputNumber>
+                </div>
             </div>
         </div>
     </div>

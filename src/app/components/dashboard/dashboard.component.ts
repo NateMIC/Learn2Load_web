@@ -9,6 +9,7 @@ import { AppConfig } from '../../api/appconfig';
 @Component({
     templateUrl: './dashboard.component.html',
 })
+
 export class DashboardComponent implements OnInit {
 
     chartData: any;
@@ -23,17 +24,31 @@ export class DashboardComponent implements OnInit {
 
     errorLevel: number = 15;
 
-    constructor(private productService: ProductService, public configService: ConfigService) {}
+    crateNumber: number = 6;
+
+    minutes : number = 3;
+
+    secondes : number = 30;
+
+    learninglevel: any[];
+
+    selectedLevel: string = "DE";
+
+    
+    constructor(private productService: ProductService, public configService: ConfigService) {
+        this.learninglevel = [
+            {label: 'Débutant', value: 'DE'},
+            {label: 'Intermédiaire', value: 'IN'},
+            {label: 'Expert', value: 'EX'},
+            {label: 'Personnalisé', value: 'PE'}
+        ];
+    }
 
     ngOnInit() {
         this.config = this.configService.config;
         this.subscription = this.configService.configUpdate$.subscribe(config => {
             this.config = config;
         });
-       
-
     }
-
-    
 
 }
