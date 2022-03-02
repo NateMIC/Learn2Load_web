@@ -9,7 +9,7 @@ import { MessageService, ConfirmationService } from 'primeng/api'
 @Component({
     templateUrl: './table.component.html',
     providers: [MessageService, ConfirmationService],
-    styleUrls: ['../../../assets/demo/badges.scss'],
+    // styleUrls: ['../../../assets/demo/badges.scss'],
     styles: [`
         :host ::ng-deep  .p-frozen-column {
             font-weight: bold;

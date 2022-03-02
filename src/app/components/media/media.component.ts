@@ -6,7 +6,7 @@ import { Product } from '../../api/product';
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
-  styleUrls: ['../../../assets/demo/badges.scss'],
+//   styleUrls: ['../../../assets/demo/badges.scss'],
   styles:[`
     :host ::ng-deep .p-carousel-indicators .p-link{
       border-radius:5px !important;
