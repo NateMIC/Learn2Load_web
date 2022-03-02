@@ -12,7 +12,7 @@ export class SignalRService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("https://localhost:5001/chart")
+    .withUrl("https://localhost:5001/holo")
     .build();
 
     this.hubConnection
@@ -28,14 +28,14 @@ export class SignalRService {
     })
   }
 
-  public broadcastChartData = (data) => {
+  public broadcastHoloData = (data) => {
     this.data = data;
-    this.hubConnection.invoke('broadcastchartdata', this.data)
+    this.hubConnection.invoke('broadcastholodata', this.data)
     .catch(err => console.error(err));
   }
 
   public addBroadcastChartDataListener = () => {
-    this.hubConnection.on('broadcastchartdata', (data) => {
+    this.hubConnection.on('broadcastholodata', (data) => {
       this.bradcastedData = data;
       console.log(this.bradcastedData);
       

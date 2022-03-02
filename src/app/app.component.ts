@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
     }
 
     private startHttpRequest(){
-        this.http.get("https://localhost:5001/api/chart").subscribe(res => {
+        this.http.get("https://localhost:5001/api/holo").subscribe(res => {
             console.log(res);
         })
     }
@@ -36,6 +36,6 @@ export class AppComponent implements OnInit{
         // console.log("--------");
         // console.log(event);
         // console.log("--------");
-        this.signalRService.broadcastChartData(event);
+        this.signalRService.broadcastHoloData(event);
     }
 }
