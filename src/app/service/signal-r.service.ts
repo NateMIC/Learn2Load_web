@@ -7,6 +7,8 @@ import * as signalR from "@microsoft/signalr";
 export class SignalRService {
 
   private hubConnection: signalR.HubConnection;
+  public data: string;
+  public bradcastedData: string;
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -21,7 +23,21 @@ export class SignalRService {
 
   public addTransferDataListener = () => {
     this.hubConnection.on('transferchartdata', (data) => {
-      console.log(data);
+      this.data = data;
+      
+    })
+  }
+
+  public broadcastChartData = (data) => {
+    this.data = data;
+    this.hubConnection.invoke('broadcastchartdata', this.data)
+    .catch(err => console.error(err));
+  }
+
+  public addBroadcastChartDataListener = () => {
+    this.hubConnection.on('broadcastchartdata', (data) => {
+      this.bradcastedData = data;
+      console.log(this.bradcastedData);
       
     })
   }

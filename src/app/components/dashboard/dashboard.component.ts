@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
+import { SharedService } from 'src/app/service/shared.service';
  
 @Component({
     templateUrl: './dashboard.component.html',
@@ -10,29 +11,18 @@ import { AppConfig } from '../../api/appconfig';
 export class DashboardComponent implements OnInit {
 
     chartData: any;
-
     chartOptions: any;
-
     subscription: Subscription;
-
     config: AppConfig;
-
     succesLevel: number;
-
     errorLevel: number;
-
     crateNumber: number;
-
     minutes : number;
-
     secondes : number;
-
     learninglevel: any[];
-
     selectedLevel: string = "DE";
-
     
-    constructor(public configService: ConfigService) {
+    constructor(public configService: ConfigService, private _sharedService: SharedService) {
         this.learninglevel = [
             {label: 'Débutant', value: 'DE'},
             {label: 'Intermédiaire', value: 'IN'},
@@ -111,6 +101,10 @@ export class DashboardComponent implements OnInit {
         // console.log("Error : " + this.errorLevel);
         // console.log("Nb crates : " + this.crateNumber);
         // console.log("Time : " + this.minutes + ":" + this.secondes);
+    }
+
+    buttonClicked(action){
+        this._sharedService.emitChange(action);
     }
 
 }
