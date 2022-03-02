@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../service/productservice';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
@@ -33,7 +32,7 @@ export class DashboardComponent implements OnInit {
     selectedLevel: string = "DE";
 
     
-    constructor(private productService: ProductService, public configService: ConfigService) {
+    constructor(public configService: ConfigService) {
         this.learninglevel = [
             {label: 'Débutant', value: 'DE'},
             {label: 'Intermédiaire', value: 'IN'},
