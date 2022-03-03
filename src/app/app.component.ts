@@ -26,16 +26,13 @@ export class AppComponent implements OnInit{
         this.startHttpRequest();
     }
 
-    private startHttpRequest(){
+    private startHttpRequest(){ //ngRock address to change --------------------------------------------------------
         this.http.get("https://9969-194-78-242-183.ngrok.io/api/holo").subscribe(res => {
             console.log(res);
         })
     }
 
     public buttonClicked = (event) => {
-        // console.log("--------");
-        // console.log(event);
-        // console.log("--------");
         this.signalRService.broadcastHoloData(event);
     }
 }
