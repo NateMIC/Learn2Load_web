@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
     }
 
     private startHttpRequest(){
-        this.http.get("https://localhost:5001/api/holo").subscribe(res => {
+        this.http.get("https://9969-194-78-242-183.ngrok.io/api/holo").subscribe(res => {
             console.log(res);
         })
     }

@@ -12,7 +12,7 @@ export class SignalRService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("https://localhost:5001/holo")
+    .withUrl("https://9969-194-78-242-183.ngrok.io/holo")
     .build();
 
     this.hubConnection
