@@ -33,9 +33,6 @@ export class AppComponent implements OnInit{
     }
 
     public buttonClicked = (event) => {
-        // console.log("--------");
-        // console.log(event);
-        // console.log("--------");
         this.signalRService.broadcastHoloData(event);
     }
 }

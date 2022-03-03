@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
     chartOptions: any;
     subscription: Subscription;
     config: AppConfig;
-    succesLevel: number;
+    successLevel: number;
     errorLevel: number;
     crateNumber: number;
     minutes : number;
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
             this.config = config;
         });
 
-        this.succesLevel = 50;
+        this.successLevel = 50;
         this.errorLevel = 15;
         this.crateNumber = 4;
         this.minutes = 15;
@@ -50,28 +50,28 @@ export class DashboardComponent implements OnInit {
     changeValuesBasedOnTheSelectedLevel(value:string) {
         switch(value) {
             case "DE" : console.log("'Débutant' mode activated");
-                this.succesLevel = 40;
+                this.successLevel = 40;
                 this.errorLevel = 35;
                 this.crateNumber = 4;
                 this.minutes = 15;
                 this.secondes = 0;
             break;
             case "IN" : console.log("'Intermédiaire' mode activated");
-                this.succesLevel = 50;
+                this.successLevel = 50;
                 this.errorLevel = 25;
                 this.crateNumber = 6;
                 this.minutes = 10;
                 this.secondes = 0;
             break;
             case "AV" : console.log("'Avancé' mode activated");
-                this.succesLevel = 60;
+                this.successLevel = 60;
                 this.errorLevel = 15;
                 this.crateNumber = 8;
                 this.minutes = 7;
                 this.secondes = 30;
             break;
             case "EX" : console.log("'Expert' mode activated");
-                this.succesLevel = 70;
+                this.successLevel = 70;
                 this.errorLevel = 10;
                 this.crateNumber = 10;
                 this.minutes = 5;
@@ -91,20 +91,26 @@ export class DashboardComponent implements OnInit {
     }
 
     savePersonnalizedValues() {
-        this.succesLevel = this.succesLevel;
+        this.successLevel = this.successLevel;
         this.errorLevel = this.errorLevel;
         this.crateNumber = this.crateNumber;
         this.minutes = this.minutes;
         this.secondes = this.secondes;
 
-        // console.log("Success : " + this.succesLevel);
-        // console.log("Error : " + this.errorLevel);
-        // console.log("Nb crates : " + this.crateNumber);
-        // console.log("Time : " + this.minutes + ":" + this.secondes);
     }
 
     buttonClicked(action){
-        this._sharedService.emitChange(action);
+        var time = (this.minutes * 60) + this.secondes;
+        var jsonToSend = {
+            "action" : action,
+            "crateNumber" : this.crateNumber,
+            "errorLevel" : this.errorLevel,
+            "successLevel" : this.successLevel,
+            "time" : time
+        }
+        var jsonString = JSON.stringify(jsonToSend); 
+        
+        this._sharedService.emitChange(jsonString);
     }
 
 }

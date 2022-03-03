@@ -10,8 +10,8 @@
                 <p-selectButton [options]="learninglevel" [(ngModel)]="selectedLevel" optionLabel="label" optionValue="value" (onChange)="changeValuesBasedOnTheSelectedLevel(selectedLevel)"></p-selectButton>
             </div>
             <div class="mb-4">
-                <h5>Taux de réussite : {{succesLevel}}%</h5>
-                <p-slider [(ngModel)]="succesLevel" (onChange)="changeToPersonnalizedMode()"></p-slider>
+                <h5>Taux de réussite : {{successLevel}}%</h5>
+                <p-slider [(ngModel)]="successLevel" (onChange)="changeToPersonnalizedMode()"></p-slider>
             </div>
             <div class="mb-4">
                 <h5>Taux d'erreur : {{errorLevel}}%</h5>
