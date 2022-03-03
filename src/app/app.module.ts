@@ -106,6 +106,8 @@ import { ConfigService } from './service/app.config.service';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
+import { SignalRService } from './service/signal-r.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -213,7 +215,7 @@ import { AccessComponent } from './components/access/access.component';
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        MenuService, ConfigService
+        MenuService, ConfigService,SignalRService,MessageService
     ],
     bootstrap: [AppComponent]
 })

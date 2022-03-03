@@ -102,6 +102,7 @@ export class DashboardComponent implements OnInit {
     buttonClicked(action){
         var time = (this.minutes * 60) + this.secondes;
         var jsonToSend = {
+            "source" : "angular",
             "action" : action,
             "crateNumber" : this.crateNumber,
             "errorLevel" : this.errorLevel,

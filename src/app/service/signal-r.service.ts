@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,9 @@ export class SignalRService {
   private hubConnection: signalR.HubConnection;
   public data: string;
   public bradcastedData: string;
+
+  private customSubject = new Subject<any>();
+  customObservable = this.customSubject.asObservable();
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -28,18 +32,28 @@ export class SignalRService {
     })
   }
 
+  //used to send data to the server
   public broadcastHoloData = (data) => {
     this.data = data;
     this.hubConnection.invoke('broadcastholodata', this.data)
     .catch(err => console.error(err));
   }
 
+  //used to receive data from the server
   public addBroadcastChartDataListener = () => {
     this.hubConnection.on('broadcastholodata', (data) => {
       this.bradcastedData = data;
-      console.log(this.bradcastedData);
+      var jsonObject = JSON.parse(data);
+      if(jsonObject.source == "hololens"){
+        this.callAppComponentFunctionToDisplayToast(jsonObject);
+      }
+      
       
     })
+  }
+
+  callAppComponentFunctionToDisplayToast(jsonObject) {
+    this.customSubject.next(jsonObject);
   }
 
   constructor() { }
