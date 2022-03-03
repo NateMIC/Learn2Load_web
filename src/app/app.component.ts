@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
     }
 
     private startHttpRequest(){
-        this.http.get("https://10.120.10.46:5001/api/holo").subscribe(res => {
+        this.http.get("https://localhost:5001/api/holo").subscribe(res => {
             console.log(res);
         })
     }
