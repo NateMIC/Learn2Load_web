@@ -18,8 +18,9 @@
         color: var(--surface-900);
         font-size: 1.5rem;
         font-weight: 500;
-        width: 300px;
+        width: 200px;
         border-radius: 12px;
+        margin: auto;
 
         img {
             height: 3.5rem;
@@ -63,7 +64,7 @@
     }
 
     .layout-menu-button {
-        margin-left: 2rem;
+        margin-left: none;
     }
 
     .layout-topbar-menu-button {
@@ -100,11 +101,11 @@
             order: 1;
         }
 
-        .layout-topbar-menu-button {
-            display: inline-flex;
-            margin-left: 0;
-            order: 3;
-        }
+        // .layout-topbar-menu-button {
+        //     display: inline-flex;
+        //     margin-left: 0;
+        //     order: 3;
+        // }
 
         .layout-topbar-menu {
             margin-left: 0;
