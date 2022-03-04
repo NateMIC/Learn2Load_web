@@ -40,24 +40,20 @@ export class DashboardComponent implements OnInit {
             this.config = config;
         });
 
-        this.successLevel = 50;
-        this.errorLevel = 15;
-        this.crateNumber = 4;
-        this.minutes = 15;
-        this.secondes = 0;
+        this.changeValuesBasedOnTheSelectedLevel("DE");
     }
 
     changeValuesBasedOnTheSelectedLevel(value:string) {
         switch(value) {
             case "DE" : console.log("'Débutant' mode activated");
-                this.successLevel = 40;
+                this.successLevel = 25;
                 this.errorLevel = 35;
                 this.crateNumber = 4;
                 this.minutes = 15;
                 this.secondes = 0;
             break;
             case "IN" : console.log("'Intermédiaire' mode activated");
-                this.successLevel = 50;
+                this.successLevel = 40;
                 this.errorLevel = 25;
                 this.crateNumber = 6;
                 this.minutes = 10;
