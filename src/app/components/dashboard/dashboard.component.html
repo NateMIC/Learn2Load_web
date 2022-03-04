@@ -28,7 +28,6 @@
                     <p-inputNumber [(ngModel)]="secondes" [showButtons]="true" [min]="0" [max]="59" suffix=" secondes" (onInput)="changeToPersonnalizedMode()"></p-inputNumber>
                 </div>
             </div>
-            <button *ngIf="this.selectedLevel == 'PE'" pButton type="button" label="Sauvegarder" icon="pi pi-check" class="p-button-success" (click)="savePersonnalizedValues()"></button>
         </div>
     </div>
 

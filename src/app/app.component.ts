@@ -23,18 +23,18 @@ export class AppComponent implements OnInit{
         this.signalRService.startConnection();
         this.signalRService.addTransferDataListener();
         this.signalRService.addBroadcastChartDataListener();
-        this.startHttpRequest();
+        // this.startHttpRequest();
         this.signalRService.customObservable.subscribe((data) => {
             this.alertFormationFinished(data);
           }
         );
     }
 
-    private startHttpRequest(){ //ngRock address to change --------------------------------------------------------
-        this.http.get("https://learn2loadserver.azurewebsites.net/api/holo").subscribe(res => {
-            console.log(res);
-        })
-    }
+    // private startHttpRequest(){ //ngRock address to change --------------------------------------------------------
+    //     this.http.get("https://learn2loadserver.azurewebsites.net/api/holo").subscribe(res => {
+    //         console.log(res);
+    //     })
+    // }
 
     public buttonClicked = (event) => {
         this.signalRService.broadcastHoloData(event);
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
 
     public alertFormationFinished(data){
         var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
-        this.messageService.add({key: 'br', severity:'info', summary: 'Info', detail: message});
+        this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
     }
 
     

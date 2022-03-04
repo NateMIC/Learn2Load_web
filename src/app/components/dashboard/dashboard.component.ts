@@ -90,15 +90,6 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    savePersonnalizedValues() {
-        this.successLevel = this.successLevel;
-        this.errorLevel = this.errorLevel;
-        this.crateNumber = this.crateNumber;
-        this.minutes = this.minutes;
-        this.secondes = this.secondes;
-
-    }
-
     buttonClicked(action){
         var time = (this.minutes * 60) + this.secondes;
         var jsonToSend = {
