@@ -16,7 +16,7 @@ export class SignalRService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("https://9969-194-78-242-183.ngrok.io/holo") //ngRock address to change --------------------------------------------------------
+    .withUrl("https://learn2loadserver.azurewebsites.net/holo") //ngRock address to change --------------------------------------------------------
     .build();
 
     this.hubConnection

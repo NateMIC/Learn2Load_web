@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
     }
 
     private startHttpRequest(){ //ngRock address to change --------------------------------------------------------
-        this.http.get("https://9969-194-78-242-183.ngrok.io/api/holo").subscribe(res => {
+        this.http.get("https://learn2loadserver.azurewebsites.net/api/holo").subscribe(res => {
             console.log(res);
         })
     }
