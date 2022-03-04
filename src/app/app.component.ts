@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
         );
     }
 
-    private startHttpRequest(){ //ngRock address to change --------------------------------------------------------
+    private startHttpRequest(){ // Server address on Azure
         this.http.get("https://learn2loadserver.azurewebsites.net/api/holo").subscribe(res => {
             console.log(res);
         })
