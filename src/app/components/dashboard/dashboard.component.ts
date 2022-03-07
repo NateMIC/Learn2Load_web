@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
 import { SharedService } from 'src/app/service/shared.service';
+import { SignalRService } from 'src/app/service/signal-r.service';
  
 @Component({
     templateUrl: './dashboard.component.html',
@@ -21,8 +22,9 @@ export class DashboardComponent implements OnInit {
     secondes : number;
     learninglevel: any[];
     selectedLevel: string = "DE";
+    isFormationLaunched: boolean = false;
     
-    constructor(public configService: ConfigService, private _sharedService: SharedService) {
+    constructor(public configService: ConfigService, private _sharedService: SharedService, public signalRService: SignalRService) {
         this.learninglevel = [
             {label: 'Débutant', value: 'DE'},
             {label: 'Intermédiaire', value: 'IN'},
@@ -32,8 +34,6 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
-
-
     ngOnInit() {
         this.config = this.configService.config;
         this.subscription = this.configService.configUpdate$.subscribe(config => {
@@ -41,6 +41,13 @@ export class DashboardComponent implements OnInit {
         });
 
         this.changeValuesBasedOnTheSelectedLevel("DE");
+
+        this.signalRService.customObservable.subscribe((data) => {
+            if(data.destination == "Angular_DashboardComponent") {
+                this.toggleFormationManagmentButtons();
+            }
+          }
+        );
     }
 
     changeValuesBasedOnTheSelectedLevel(value:string) {
@@ -99,6 +106,10 @@ export class DashboardComponent implements OnInit {
         var jsonString = JSON.stringify(jsonToSend); 
         
         this._sharedService.emitChange(jsonString);
+    }
+
+    toggleFormationManagmentButtons(){
+        this.isFormationLaunched = !this.isFormationLaunched;
     }
 
 }

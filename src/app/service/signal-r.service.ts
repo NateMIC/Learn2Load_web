@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { Subject } from 'rxjs';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class SignalRService {
   private hubConnection: signalR.HubConnection;
   public data: string;
   public bradcastedData: string;
+
 
   private customSubject = new Subject<any>();
   customObservable = this.customSubject.asObservable();
@@ -47,8 +49,6 @@ export class SignalRService {
       if(jsonObject.source == "hololens"){
         this.callAppComponentFunctionToDisplayToast(jsonObject);
       }
-      
-      
     })
   }
 
