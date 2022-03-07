@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
             {label: 'Expert', value: 'EX'},
             {label: 'Personnalisé', value: 'PE'}
         ];
-        this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P"];
+        this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P", "HOLOLENS-0V1C1L"];
         this.selectedCasque1 = this.casques[0];
     }
 
