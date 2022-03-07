@@ -97,6 +97,7 @@ export class DashboardComponent implements OnInit {
         var time = (this.minutes * 60) + this.secondes;
         var jsonToSend = {
             "source" : "angular",
+            "destination" : "hololens",
             "action" : action,
             "crateNumber" : this.crateNumber,
             "errorLevel" : this.errorLevel,
@@ -110,6 +111,8 @@ export class DashboardComponent implements OnInit {
 
     toggleFormationManagmentButtons(){
         this.isFormationLaunched = !this.isFormationLaunched;
+        console.log("formation lancée : " + this.isFormationLaunched);
+        
     }
 
 }

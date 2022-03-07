@@ -3,8 +3,8 @@
         <div class="card mb-0">
             <div class="mb-4 flex justify-content-between">
                 <button pButton pRipple type="button" id="launchButton" [attr.disabled]="isFormationLaunched ? 'disabled' : null" label="Lancer la formation" class="mr-2 mb-2" (click)="buttonClicked('start')"></button>
-                <button pButton pRipple type="button" id="stopButton" [disabled]="!isFormationLaunched ? 'disabled' : null" label="Arrêter la formation" class="p-button-danger mr-2 mb-2" (click)="buttonClicked('stop')"></button>
-                <button pButton pRipple type="button" id="restartButton" [disabled]="!isFormationLaunched ? 'disabled' : null" label="Redémarrer la formation" class="p-button-warning mr-2 mb-2" (click)="buttonClicked('restart')"></button>
+                <button pButton pRipple type="button" id="stopButton" [attr.disabled]="!isFormationLaunched ? 'disabled' : null" label="Arrêter la formation" class="p-button-danger mr-2 mb-2" (click)="buttonClicked('stop')"></button>
+                <button pButton pRipple type="button" id="restartButton" [attr.disabled]="!isFormationLaunched ? 'disabled' : null" label="Redémarrer la formation" class="p-button-warning mr-2 mb-2" (click)="buttonClicked('restart')"></button>
             </div>
             <div class="mb-4">
                 <p-selectButton [options]="learninglevel" [(ngModel)]="selectedLevel" optionLabel="label" optionValue="value" (onChange)="changeValuesBasedOnTheSelectedLevel(selectedLevel)"></p-selectButton>
