@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
         this.signalRService.addBroadcastChartDataListener();
         // this.startHttpRequest();
         this.signalRService.customObservable.subscribe((data) => {
-            if(data.destination == "Angular_AppComponent") {
+            if(data.destination.includes("Angular_AppComponent")) {
                 this.alertFormationFinished(data);
             }
           }

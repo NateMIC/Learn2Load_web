@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { Subject } from 'rxjs';
-import { DashboardComponent } from '../components/dashboard/dashboard.component';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class SignalRService {
   public data: string;
   public bradcastedData: string;
   public connectionId : string;
+  public sourceId;
 
 
   private customSubject = new Subject<any>();
@@ -37,7 +38,7 @@ export class SignalRService {
           console.log(this.connectionId);
           
           var jsonToSend = {
-            "source" : "angular",
+            "source" : this.sourceId,
           }
           var jsonString = JSON.stringify(jsonToSend);
           this.broadcastHoloData(jsonString);
@@ -66,7 +67,7 @@ export class SignalRService {
       
       this.bradcastedData = data;
       var jsonObject = JSON.parse(data);
-      if(jsonObject.source == "hololens"){
+      if(jsonObject.source == localStorage.getItem("selectedCasque")){
         this.callAppComponentFunctionToDisplayToast(jsonObject);
       }
     })
@@ -76,5 +77,7 @@ export class SignalRService {
     this.customSubject.next(jsonObject);
   }
 
-  constructor() { }
+  constructor() { 
+    this.sourceId = "angular" + uuidv4();
+  }
 }

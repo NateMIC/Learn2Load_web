@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
     learninglevel: any[];
     selectedLevel: string = "DE";
     isFormationLaunched: boolean = false;
+    casques: string[];
+    selectedCasque1: string;
     
     constructor(public configService: ConfigService, private _sharedService: SharedService, public signalRService: SignalRService) {
         this.learninglevel = [
@@ -32,6 +34,8 @@ export class DashboardComponent implements OnInit {
             {label: 'Expert', value: 'EX'},
             {label: 'Personnalisé', value: 'PE'}
         ];
+        this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P"];
+        this.selectedCasque1 = this.casques[0];
     }
 
     ngOnInit() {
@@ -43,7 +47,7 @@ export class DashboardComponent implements OnInit {
         this.changeValuesBasedOnTheSelectedLevel("DE");
 
         this.signalRService.customObservable.subscribe((data) => {
-            if(data.destination == "Angular_DashboardComponent") {
+            if(data.destination.includes("Angular_DashboardComponent")) {
                 this.toggleFormationManagmentButtons();
             }
           }
@@ -94,10 +98,12 @@ export class DashboardComponent implements OnInit {
     }
 
     buttonClicked(action){
+        localStorage.setItem("selectedCasque", this.selectedCasque1);
+        console.log(localStorage.getItem("selectedCasque"));
         var time = (this.minutes * 60) + this.secondes;
         var jsonToSend = {
-            "source" : "angular",
-            "destination" : "hololens",
+            "source" : this.signalRService.sourceId,
+            "destination" : localStorage.getItem("selectedCasque"),
             "action" : action,
             "crateNumber" : this.crateNumber,
             "errorLevel" : this.errorLevel,
