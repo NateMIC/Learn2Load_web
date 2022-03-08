@@ -24,7 +24,10 @@ export class AppComponent implements OnInit{
         this.signalRService.addTransferDataListener();
         this.signalRService.addBroadcastChartDataListener();
         this.signalRService.customObservable.subscribe((data) => {
-            if(data.destination.includes("Angular_AppComponent")) {
+            if(data == "erreur"){
+                this.alertErrorLaunchFormation();
+            }
+            else if(data.destination.includes("Angular_AppComponent")) {
                 this.alertFormationFinished(data);
             }
           }
@@ -38,6 +41,11 @@ export class AppComponent implements OnInit{
     public alertFormationFinished(data){
         var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
         this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
+    }
+
+    public alertErrorLaunchFormation(){
+        var message = "La formation n'a pas pu être lancée car le client n'est pas accessible";
+        this.messageService.add({key: 'br', severity:'error', summary: 'Erreur', detail: message, sticky: true});
     }
 
     

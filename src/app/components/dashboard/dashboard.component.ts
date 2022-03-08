@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
         this.changeValuesBasedOnTheSelectedLevel("DE");
 
         this.signalRService.customObservable.subscribe((data) => {
-            if(data.destination.includes("Angular_DashboardComponent")) {
+            if(data != "erreur" && data.destination.includes("Angular_DashboardComponent")) {
                 this.toggleFormationManagmentButtons();
             }
           }

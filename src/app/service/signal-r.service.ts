@@ -61,7 +61,7 @@ export class SignalRService {
   public broadcastHoloData = (data) => {
     this.data = data;
     this.hubConnection.invoke('broadcastholodata', this.data, this.connectionId)
-    .catch(err => console.error(err));
+    .catch(err => this.callAppComponentFunctionToDisplayToast("erreur"));
   }
 
   //used to receive data from the server
