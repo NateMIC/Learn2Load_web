@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlServer: "https://learn2loadserver.azurewebsites.net/holo"
+  // urlServer: "https://localhost:5001/holo"
 };
 
 /*

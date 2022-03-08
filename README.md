@@ -1,3 +1,3 @@
-# Learn2Load
+# Learn2LoadWeb
 
-Web interface for the Hololens application
+Web interface made with Angular and PrimeNG for the Hololens application Learn2Load

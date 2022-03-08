@@ -23,7 +23,6 @@ export class AppComponent implements OnInit{
         this.signalRService.startConnection();
         this.signalRService.addTransferDataListener();
         this.signalRService.addBroadcastChartDataListener();
-        // this.startHttpRequest();
         this.signalRService.customObservable.subscribe((data) => {
             if(data.destination.includes("Angular_AppComponent")) {
                 this.alertFormationFinished(data);
@@ -31,12 +30,6 @@ export class AppComponent implements OnInit{
           }
         );
     }
-
-    // private startHttpRequest(){ //ngRock address to change --------------------------------------------------------
-    //     this.http.get("https://learn2loadserver.azurewebsites.net/api/holo").subscribe(res => {
-    //         console.log(res);
-    //     })
-    // }
 
     public buttonClicked = (event) => {
         this.signalRService.broadcastHoloData(event);

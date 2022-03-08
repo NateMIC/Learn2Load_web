@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -20,8 +21,11 @@ export class SignalRService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("https://learn2loadserver.azurewebsites.net/holo") // Server address on Azure
-    // .withUrl("https://localhost:5001/holo")
+
+    //!-------------------------------------------------------
+    //! DON'T FORGET TO CHANGE WHEN SWITCHING BETWEEN DEV AND PROD
+    //!-------------------------------------------------------
+    .withUrl(environment.urlServer) //Server address
     .build();
 
     this.hubConnection

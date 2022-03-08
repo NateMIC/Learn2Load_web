@@ -34,7 +34,9 @@ export class DashboardComponent implements OnInit {
             {label: 'Expert', value: 'EX'},
             {label: 'Personnalisé', value: 'PE'}
         ];
-        this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P", "HOLOLENS-0V1C1L"];
+        //If a new device must be added, just add the device name of this one
+        //TODO Maybe change the access to a device by another way than the name because there could be redundancy
+        this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P", "HOLOLENS-0V1C1L", "MSI-HOME", "DESKTOP-B18594V"];
         this.selectedCasque1 = this.casques[0];
     }
 
