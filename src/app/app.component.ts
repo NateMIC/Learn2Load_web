@@ -39,8 +39,15 @@ export class AppComponent implements OnInit{
     }
 
     public alertFormationFinished(data){
-        var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
-        this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
+        console.log(data.isValid);
+        if(data.isValid) {
+            var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
+            this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
+        }
+        else {
+            var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
+            this.messageService.add({key: 'br', severity:'error', summary: 'Info', detail: message, sticky: true});
+        }
     }
 
     public alertErrorLaunchFormation(){

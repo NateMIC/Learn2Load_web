@@ -21,10 +21,6 @@ export class SignalRService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-
-    //!-------------------------------------------------------
-    //! DON'T FORGET TO CHANGE WHEN SWITCHING BETWEEN DEV AND PROD
-    //!-------------------------------------------------------
     .withUrl(environment.urlServer) //Server address
     .build();
 
