@@ -45,23 +45,23 @@ export class AppComponent implements OnInit{
         console.log(data.isValid);
         if(data.isValid) {
             var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
-            this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
+            this.messageService.add({key: 'br', severity:'success', summary: 'Validation de la palette', detail: message, sticky: true});
         }
         else {
             var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
-            this.messageService.add({key: 'br', severity:'error', summary: 'Info', detail: message, sticky: true});
+            this.messageService.add({key: 'br', severity:'error', summary: 'Validation de la palette', detail: message, sticky: true});
         }
     }
 
     public alertStressTestFinished(data){
         console.log(data.isValid);
         if(data.isValid) {
-            var message = data.source + " a passé le test de stress avec succès !";
-            this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
+            var message = data.source + " a passé le test avec succès !";
+            this.messageService.add({key: 'br', severity:'success', summary: 'Test de stress', detail: message, sticky: true});
         }
         else {
-            var message = data.source + " n'a pas passé le test de stress.";
-            this.messageService.add({key: 'br', severity:'error', summary: 'Info', detail: message, sticky: true});
+            var message = data.source + " a échoué au test.";
+            this.messageService.add({key: 'br', severity:'error', summary: 'Test de stress', detail: message, sticky: true});
         }
     }
 
