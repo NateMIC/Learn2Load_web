@@ -27,6 +27,9 @@ export class AppComponent implements OnInit{
             if(data == "erreur"){
                 this.alertErrorLaunchFormation();
             }
+            else if(data.destination.includes("_StressTest")) {
+                this.alertStressTestFinished(data);
+            }
             else if(data.destination.includes("Angular_AppComponent")) {
                 this.alertFormationFinished(data);
             }
@@ -46,6 +49,18 @@ export class AppComponent implements OnInit{
         }
         else {
             var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
+            this.messageService.add({key: 'br', severity:'error', summary: 'Info', detail: message, sticky: true});
+        }
+    }
+
+    public alertStressTestFinished(data){
+        console.log(data.isValid);
+        if(data.isValid) {
+            var message = data.source + " a passé le test de stress avec succès !";
+            this.messageService.add({key: 'br', severity:'success', summary: 'Info', detail: message, sticky: true});
+        }
+        else {
+            var message = data.source + " n'a pas passé le test de stress.";
             this.messageService.add({key: 'br', severity:'error', summary: 'Info', detail: message, sticky: true});
         }
     }
