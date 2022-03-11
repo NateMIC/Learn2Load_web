@@ -28,15 +28,15 @@
             <div class="mb-4">
                 <h5>Types de fruit</h5>
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon"></p-checkbox>
+                    <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="watermelon">Pastèque (grande caisse)</label>
                 </div>
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="lemon" [(ngModel)]="selectedFruitType" inputId="lemon"></p-checkbox>
+                    <p-checkbox name="group1" value="lemon" [(ngModel)]="selectedFruitType" inputId="lemon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="lemon">Citron (moyenne caisse)</label>
                 </div>
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach"></p-checkbox>
+                    <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="peach">Pêche (petite caisse)</label>
                 </div>
             </div>
