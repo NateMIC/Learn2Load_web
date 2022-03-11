@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
     config: AppConfig;
     successLevel: number;
     errorLevel: number;
-    crateNumber: number;
     minutes : number;
     secondes : number;
     learninglevel: any[];
@@ -25,6 +24,7 @@ export class DashboardComponent implements OnInit {
     isFormationLaunched: boolean = false;
     casques: string[];
     selectedCasque1: string;
+    selectedFruitType: string[];
     
     constructor(public configService: ConfigService, private _sharedService: SharedService, public signalRService: SignalRService) {
         this.learninglevel = [
@@ -61,28 +61,28 @@ export class DashboardComponent implements OnInit {
             case "DE" : console.log("'Débutant' mode activated");
                 this.successLevel = 25;
                 this.errorLevel = 35;
-                this.crateNumber = 4;
+                this.selectedFruitType = ["watermelon"];
                 this.minutes = 10;
                 this.secondes = 0;
             break;
             case "IN" : console.log("'Intermédiaire' mode activated");
                 this.successLevel = 40;
                 this.errorLevel = 25;
-                this.crateNumber = 6;
+                this.selectedFruitType = ["watermelon", "lemon"];
                 this.minutes = 8;
                 this.secondes = 0;
             break;
             case "AV" : console.log("'Avancé' mode activated");
                 this.successLevel = 45;
                 this.errorLevel = 20;
-                this.crateNumber = 8;
+                this.selectedFruitType = ["watermelon", "lemon"];
                 this.minutes = 7;
                 this.secondes = 30;
             break;
             case "EX" : console.log("'Expert' mode activated");
                 this.successLevel = 50;
                 this.errorLevel = 25;
-                this.crateNumber = 10;
+                this.selectedFruitType = ["watermelon", "lemon", "peach"];
                 this.minutes = 5;
                 this.secondes = 0;
             break;
@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
             "source" : this.signalRService.sourceId,
             "destination" : localStorage.getItem("selectedCasque"),
             "action" : action,
-            "crateNumber" : this.crateNumber,
+            "fruitsType" : this.selectedFruitType,
             "errorLevel" : this.errorLevel,
             "successLevel" : this.successLevel,
             "time" : time
