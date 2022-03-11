@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
             "source" : this.signalRService.sourceId,
             "destination" : localStorage.getItem("selectedCasque"),
             "action" : action,
-            "fruitsType" : this.selectedFruitType,
+            "fruitsTypes" : this.selectedFruitType,
             "errorLevel" : this.errorLevel,
             "successLevel" : this.successLevel,
             "time" : time
