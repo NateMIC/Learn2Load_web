@@ -21,34 +21,51 @@
                 <h5>Taux d'erreur : {{errorLevel}}%</h5>
                 <p-slider [(ngModel)]="errorLevel" (onChange)="changeToPersonnalizedMode()"></p-slider>
             </div>
-            <!-- <div class="mb-4">
-                <h5>Nombre de caisse</h5>
-                <p-inputNumber [(ngModel)]="crateNumber" [showButtons]="true" [min]="1" [max]="50" (onInput)="changeToPersonnalizedMode()"></p-inputNumber>
-            </div> -->
-            <div class="mb-4">
-                <h5>Types de fruit</h5>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                    <label for="watermelon">Pastèque (grande caisse)</label>
-                    <p-inputNumber class="ml-3" [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+
+            <div>
+                <div class="grid">
+                    <h5 class="col" style="margin-top: auto;">Types de fruit</h5>
+                    <h5 class="col hidden lg:block">Commande</h5>
                 </div>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="lemon" [(ngModel)]="selectedFruitType" inputId="lemon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                    <label for="lemon">Citron (moyenne caisse)</label>
-                    <p-inputNumber class="ml-4" [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+
+                <div>
+                    <div class="grid mb-3">
+                        <div class="field-checkbox col mb-0">
+                            <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
+                            <label for="watermelon">Pastèque (grande caisse)</label>
+                        </div>
+                        <div class="col">
+                            <p-inputNumber [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="grid mb-3">
+                        <div class="field-checkbox col mb-0">
+                            <p-checkbox name="group1" value="lemon" [(ngModel)]="selectedFruitType" inputId="lemon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
+                            <label for="lemon">Citron (moyenne caisse)</label>
+                        </div>
+                        <div class="col">
+                            <p-inputNumber [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="grid mb-3">
+                        <div class="field-checkbox col mb-0">
+                            <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
+                            <label for="peach">Pêche (petite caisse)</label>
+                        </div>
+                        <div class="col">
+                            <p-inputNumber [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+                        </div>
+                    </div>
+                    
                 </div>
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                    <label for="peach">Pêche (petite caisse)</label>
-                    <p-inputNumber class="ml-6" [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
-                </div>
+               
                 <p style="color: red; font-weight: bold;" >{{errorSelectedFruit}}</p>
             </div>
             <div class="mb-4">
                 <h5>Temps de formation</h5>
-                <div>
-                    <p-inputNumber class="mr-4" [(ngModel)]="minutes" [showButtons]="true" [min]="1" [max]="59" suffix=" minutes" (onInput)="changeToPersonnalizedMode()"></p-inputNumber>
-                    <p-inputNumber [(ngModel)]="secondes" [showButtons]="true" [min]="0" [max]="59" suffix=" secondes" (onInput)="changeToPersonnalizedMode()"></p-inputNumber>
+                <div class="grid">
+                    <p-inputNumber class="mr-4 col" [(ngModel)]="minutes" [showButtons]="true" [min]="1" [max]="59" suffix=" minutes" (onInput)="changeToPersonnalizedMode()"></p-inputNumber>
+                    <p-inputNumber class="col" [(ngModel)]="secondes" [showButtons]="true" [min]="0" [max]="59" suffix=" secondes" (onInput)="changeToPersonnalizedMode()"></p-inputNumber>
                 </div>
             </div>
         </div>
