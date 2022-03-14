@@ -11,19 +11,25 @@ import { SignalRService } from 'src/app/service/signal-r.service';
 
 export class DashboardComponent implements OnInit {
 
-    chartData: any;
-    chartOptions: any;
     subscription: Subscription;
     config: AppConfig;
+
     successLevel: number;
     errorLevel: number;
+
     minutes : number;
     secondes : number;
+
     learninglevel: any[];
     selectedLevel: string = "DE";
+
     isFormationLaunched: boolean = false;
+
     casques: string[];
     selectedCasque1: string;
+
+    //Contain the command in this order -> watermelon, lemon, peach
+    command: number[] = [0,0,0];
     selectedFruitType: string[];
     errorSelectedFruit: string;
     
@@ -101,7 +107,6 @@ export class DashboardComponent implements OnInit {
     }
 
     buttonClicked(action){
-        console.log(this.selectedFruitType.length);
         
         if(this.selectedFruitType.length == 0)
             this.errorSelectedFruit = "Vous devez sélectionner au moins 1 type de fruit";
@@ -115,6 +120,7 @@ export class DashboardComponent implements OnInit {
                 "destination" : localStorage.getItem("selectedCasque"),
                 "action" : action,
                 "fruitsTypes" : this.selectedFruitType,
+                "command" : this.command,
                 "errorLevel" : this.errorLevel,
                 "successLevel" : this.successLevel,
                 "time" : time
@@ -123,7 +129,6 @@ export class DashboardComponent implements OnInit {
             
             this._sharedService.emitChange(jsonString);
         }
-        console.log(this.errorSelectedFruit);
         
     }
 
