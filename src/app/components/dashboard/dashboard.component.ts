@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
     casques: string[];
     selectedCasque1: string;
     selectedFruitType: string[];
+    errorSelectedFruit: string;
     
     constructor(public configService: ConfigService, private _sharedService: SharedService, public signalRService: SignalRService) {
         this.learninglevel = [
@@ -100,21 +101,30 @@ export class DashboardComponent implements OnInit {
     }
 
     buttonClicked(action){
-        localStorage.setItem("selectedCasque", this.selectedCasque1);
-        console.log(localStorage.getItem("selectedCasque"));
-        var time = (this.minutes * 60) + this.secondes;
-        var jsonToSend = {
-            "source" : this.signalRService.sourceId,
-            "destination" : localStorage.getItem("selectedCasque"),
-            "action" : action,
-            "fruitsTypes" : this.selectedFruitType,
-            "errorLevel" : this.errorLevel,
-            "successLevel" : this.successLevel,
-            "time" : time
-        }
-        var jsonString = JSON.stringify(jsonToSend); 
+        console.log(this.selectedFruitType.length);
         
-        this._sharedService.emitChange(jsonString);
+        if(this.selectedFruitType.length == 0)
+            this.errorSelectedFruit = "Vous devez sélectionner au moins 1 type de fruit";
+        else {
+            this.errorSelectedFruit = "";
+            localStorage.setItem("selectedCasque", this.selectedCasque1);
+            console.log(localStorage.getItem("selectedCasque"));
+            var time = (this.minutes * 60) + this.secondes;
+            var jsonToSend = {
+                "source" : this.signalRService.sourceId,
+                "destination" : localStorage.getItem("selectedCasque"),
+                "action" : action,
+                "fruitsTypes" : this.selectedFruitType,
+                "errorLevel" : this.errorLevel,
+                "successLevel" : this.successLevel,
+                "time" : time
+            }
+            var jsonString = JSON.stringify(jsonToSend); 
+            
+            this._sharedService.emitChange(jsonString);
+        }
+        console.log(this.errorSelectedFruit);
+        
     }
 
     toggleFormationManagmentButtons(){

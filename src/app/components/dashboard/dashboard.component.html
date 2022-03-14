@@ -39,6 +39,7 @@
                     <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="peach">Pêche (petite caisse)</label>
                 </div>
+                <p style="color: red; font-weight: bold;" >{{errorSelectedFruit}}</p>
             </div>
             <div class="mb-4">
                 <h5>Temps de formation</h5>
