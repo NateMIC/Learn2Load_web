@@ -30,14 +30,17 @@
                 <div class="field-checkbox">
                     <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="watermelon">Pastèque (grande caisse)</label>
+                    <p-inputNumber class="ml-3" [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
                 </div>
                 <div class="field-checkbox">
                     <p-checkbox name="group1" value="lemon" [(ngModel)]="selectedFruitType" inputId="lemon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="lemon">Citron (moyenne caisse)</label>
+                    <p-inputNumber class="ml-4" [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
                 </div>
                 <div class="field-checkbox">
                     <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                     <label for="peach">Pêche (petite caisse)</label>
+                    <p-inputNumber class="ml-6" [(ngModel)]="minutes" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
                 </div>
                 <p style="color: red; font-weight: bold;" >{{errorSelectedFruit}}</p>
             </div>
