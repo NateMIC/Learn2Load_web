@@ -28,9 +28,6 @@
                     <h5 class="col hidden lg:block">Commande</h5>
                 </div>
 
-
-
-
                 <div *ngFor="let category of fruitType; let index = index">
                     <div class="grid mb-3">
                         <div class="field-checkbox col mb-0">
@@ -41,38 +38,7 @@
                             <p-inputNumber *ngIf="selectedFruitType.includes(category)" [(ngModel)]="command[index]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="manageCommand(category)"></p-inputNumber>
                         </div>
                     </div>
-                </div>
-                   
-<!-- 
-                    <div class="grid mb-3">
-                        <div class="field-checkbox col mb-0">
-                            <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                            <label for="watermelon">Pastèque (grande caisse)</label>
-                        </div>
-                        <div class="col">
-                            <p-inputNumber [(ngModel)]="command[0]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="addWatermelon()"></p-inputNumber>
-                        </div>
-                    </div>
-                    <div class="grid mb-3">
-                        <div class="field-checkbox col mb-0">
-                            <p-checkbox name="group1" value="lemon" [(ngModel)]="selectedFruitType" inputId="lemon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                            <label for="lemon">Citron (moyenne caisse)</label>
-                        </div>
-                        <div class="col">
-                            <p-inputNumber [(ngModel)]="command[1]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="addLemon()"></p-inputNumber>
-                        </div>
-                    </div>
-                    <div class="grid mb-3">
-                        <div class="field-checkbox col mb-0">
-                            <p-checkbox name="group1" value="peach" [(ngModel)]="selectedFruitType" inputId="peach" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                            <label for="peach">Pêche (petite caisse)</label>
-                        </div>
-                        <div class="col">
-                            <p-inputNumber  [(ngModel)]="command[2]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="addPeach()"></p-inputNumber>
-                        </div>
-                    </div>
-                </div> -->
-               
+                </div>               
                 <p style="color: red; font-weight: bold;" >{{errorSelectedFruit}}</p>
             </div>
             <div class="mb-4">
