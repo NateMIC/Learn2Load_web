@@ -32,7 +32,7 @@
                     <div class="grid mb-3">
                         <div class="field-checkbox col mb-0">
                             <p-checkbox name="group2" value="category" [value]="category"  [(ngModel)]="selectedFruitType" [inputId]="category" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                            <label [for]="category">{{category}}</label>
+                            <label [for]="category">{{category == "watermelon" ? "Pastèque" : (category == "peach" ? "Pêche" : (category == "lemon" ? "Citron" : ""))}}</label>
                         </div>
                         <div class="col">
                             <p-inputNumber *ngIf="selectedFruitType.includes(category)" [(ngModel)]="command[index]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="manageCommand(category)"></p-inputNumber>

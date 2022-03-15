@@ -135,13 +135,15 @@ export class DashboardComponent implements OnInit {
     }
 
     buttonClicked(action){
+        console.log(this.command);
         
         if(this.selectedFruitType.length == 0)
             this.errorSelectedFruit = "Vous devez sélectionner au moins 1 type de fruit";
+        else if(this.command[0] == 0 && this.command[1] == 0 && this.command[2] == 0)
+            this.errorSelectedFruit = "Vous devez ajouter au moins une caisse de fruits à la commande";
         else {
             this.errorSelectedFruit = "";
             localStorage.setItem("selectedCasque", this.selectedCasque1);
-            console.log(localStorage.getItem("selectedCasque"));
             var time = (this.minutes * 60) + this.secondes;
             var jsonToSend = {
                 "source" : this.signalRService.sourceId,
