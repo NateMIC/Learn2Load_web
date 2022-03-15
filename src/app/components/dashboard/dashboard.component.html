@@ -28,14 +28,22 @@
                     <h5 class="col hidden lg:block">Commande</h5>
                 </div>
 
-                <div>
+                <div class="grid mb-3">
+                    <div *ngFor="let category of fruitType; let index = index" class="p-field-checkbox col mb-0">
+                        <p-checkbox name="group2" value="category" [value]="category"  [(ngModel)]="selectedFruitType" [inputId]="category" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
+                        <label [for]="category">{{category}}</label>
+                        <div class="col">
+                            <p-inputNumber [(ngModel)]="command[index]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="manageCommand(category)"></p-inputNumber>
+                        </div>
+                    </div>
+<!-- 
                     <div class="grid mb-3">
                         <div class="field-checkbox col mb-0">
                             <p-checkbox name="group1" value="watermelon" [(ngModel)]="selectedFruitType" inputId="watermelon" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
                             <label for="watermelon">Pastèque (grande caisse)</label>
                         </div>
                         <div class="col">
-                            <p-inputNumber [(ngModel)]="command[0]" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+                            <p-inputNumber [(ngModel)]="command[0]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="addWatermelon()"></p-inputNumber>
                         </div>
                     </div>
                     <div class="grid mb-3">
@@ -44,7 +52,7 @@
                             <label for="lemon">Citron (moyenne caisse)</label>
                         </div>
                         <div class="col">
-                            <p-inputNumber [(ngModel)]="command[1]" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+                            <p-inputNumber [(ngModel)]="command[1]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="addLemon()"></p-inputNumber>
                         </div>
                     </div>
                     <div class="grid mb-3">
@@ -53,11 +61,10 @@
                             <label for="peach">Pêche (petite caisse)</label>
                         </div>
                         <div class="col">
-                            <p-inputNumber [(ngModel)]="command[2]" [showButtons]="true" [min]="0" suffix=" caisses"></p-inputNumber>
+                            <p-inputNumber  [(ngModel)]="command[2]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="addPeach()"></p-inputNumber>
                         </div>
                     </div>
-                    
-                </div>
+                </div> -->
                
                 <p style="color: red; font-weight: bold;" >{{errorSelectedFruit}}</p>
             </div>

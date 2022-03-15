@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
     //Contain the command in this order -> watermelon, lemon, peach
     command: number[] = [0,0,0];
+    fruitType: string[] = ["watermelon", "peach", "lemon"];
     selectedFruitType: string[];
     errorSelectedFruit: string;
     
@@ -71,6 +72,9 @@ export class DashboardComponent implements OnInit {
                 this.selectedFruitType = ["watermelon"];
                 this.minutes = 10;
                 this.secondes = 0;
+                this.command[0] = 2;
+                this.command[1] = 0;
+                this.command[2] = 0;
             break;
             case "IN" : console.log("'Intermédiaire' mode activated");
                 this.successLevel = 40;
@@ -78,13 +82,19 @@ export class DashboardComponent implements OnInit {
                 this.selectedFruitType = ["watermelon", "lemon"];
                 this.minutes = 8;
                 this.secondes = 0;
+                this.command[0] = 2;
+                this.command[1] = 2;
+                this.command[2] = 0;
             break;
             case "AV" : console.log("'Avancé' mode activated");
                 this.successLevel = 45;
                 this.errorLevel = 20;
-                this.selectedFruitType = ["watermelon", "lemon"];
+                this.selectedFruitType = ["watermelon", "lemon", "peach"];
                 this.minutes = 7;
                 this.secondes = 30;
+                this.command[0] = 2;
+                this.command[1] = 3;
+                this.command[2] = 2;
             break;
             case "EX" : console.log("'Expert' mode activated");
                 this.successLevel = 50;
@@ -92,6 +102,10 @@ export class DashboardComponent implements OnInit {
                 this.selectedFruitType = ["watermelon", "lemon", "peach"];
                 this.minutes = 5;
                 this.secondes = 0;
+                //The learner must make the order in several pallets
+                this.command[0] = 4;
+                this.command[1] = 5;
+                this.command[2] = 4;
             break;
             case "PE" : console.log("'Personnalisé' mode activated");
                 console.log("In progress");
@@ -103,6 +117,44 @@ export class DashboardComponent implements OnInit {
         if(this.selectedLevel != "PE") {
             this.selectedLevel = "PE";
             console.log("'Personnalisé' mode activated");
+        }
+    }
+
+    addPeach() {
+        if(this.selectedLevel != "PE") {
+            this.selectedLevel = "PE";
+            console.log("'Personnalisé' mode activated");
+        }
+        if(this.command[2] == 0) {
+            if(this.selectedFruitType.includes("peach"))
+            {
+                this.selectedFruitType.splice(this.selectedFruitType.indexOf("peach"));
+            }
+        }
+        else if (this.command[2] > 0) {
+            if(!this.selectedFruitType.includes("peach"))
+            {
+                this.selectedFruitType.push("peach");
+            }
+        }
+        for (let index = 0; index < this.selectedFruitType.length; index++) {
+            const element = this.selectedFruitType[index];
+            console.log(element);
+        }
+    }
+
+    manageCommand(category: string) {
+        if(this.selectedLevel != "PE") {
+            this.selectedLevel = "PE";
+            console.log("'Personnalisé' mode activated");
+        }
+        if(!this.selectedFruitType.includes(category))
+        {
+            this.selectedFruitType.push(category);
+        }
+        for (let index = 0; index < this.selectedFruitType.length; index++) {
+            const element = this.selectedFruitType[index];
+            console.log(element);
         }
     }
 
