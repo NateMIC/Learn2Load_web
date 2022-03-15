@@ -42,19 +42,19 @@ export class AppComponent implements OnInit{
     }
 
     public alertFormationFinished(data){
-        console.log(data.isValid);
+        //If formation is successed
         if(data.isValid) {
-            var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
+            var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec une moyenne de " + data.success + "% de succes et " + data.error + "% d'erreur.";
             this.messageService.add({key: 'br', severity:'success', summary: 'Validation de la palette', detail: message, sticky: true});
         }
+        //If formation is failed
         else {
-            var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec " + data.success + "% de succes et " + data.error + "% d'erreur.";
+            var message = data.source + " a terminé la formation en " + Math.floor(data.time) + " secondes avec une moyenne de " + data.success + "% de succes et " + data.error + "% d'erreur.";
             this.messageService.add({key: 'br', severity:'error', summary: 'Validation de la palette', detail: message, sticky: true});
         }
     }
 
     public alertStressTestFinished(data){
-        console.log(data.isValid);
         if(data.isValid) {
             var message = data.source + " a passé le test avec succès !";
             this.messageService.add({key: 'br', severity:'success', summary: 'Test de stress', detail: message, sticky: true});

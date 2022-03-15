@@ -28,14 +28,21 @@
                     <h5 class="col hidden lg:block">Commande</h5>
                 </div>
 
-                <div class="grid mb-3">
-                    <div *ngFor="let category of fruitType; let index = index" class="p-field-checkbox col mb-0">
-                        <p-checkbox name="group2" value="category" [value]="category"  [(ngModel)]="selectedFruitType" [inputId]="category" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
-                        <label [for]="category">{{category}}</label>
+
+
+
+                <div *ngFor="let category of fruitType; let index = index">
+                    <div class="grid mb-3">
+                        <div class="field-checkbox col mb-0">
+                            <p-checkbox name="group2" value="category" [value]="category"  [(ngModel)]="selectedFruitType" [inputId]="category" (onChange)="changeToPersonnalizedMode()"></p-checkbox>
+                            <label [for]="category">{{category}}</label>
+                        </div>
                         <div class="col">
-                            <p-inputNumber [(ngModel)]="command[index]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="manageCommand(category)"></p-inputNumber>
+                            <p-inputNumber *ngIf="selectedFruitType.includes(category)" [(ngModel)]="command[index]" [showButtons]="true" [min]="0" suffix=" caisses" (onInput)="manageCommand(category)"></p-inputNumber>
                         </div>
                     </div>
+                </div>
+                   
 <!-- 
                     <div class="grid mb-3">
                         <div class="field-checkbox col mb-0">

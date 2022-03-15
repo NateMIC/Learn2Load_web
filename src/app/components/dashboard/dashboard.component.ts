@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
     //Contain the command in this order -> watermelon, lemon, peach
     command: number[] = [0,0,0];
-    fruitType: string[] = ["watermelon", "peach", "lemon"];
+    fruitType: string[] = ["watermelon", "lemon", "peach"];
     selectedFruitType: string[];
     errorSelectedFruit: string;
     
@@ -120,28 +120,6 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    addPeach() {
-        if(this.selectedLevel != "PE") {
-            this.selectedLevel = "PE";
-            console.log("'Personnalisé' mode activated");
-        }
-        if(this.command[2] == 0) {
-            if(this.selectedFruitType.includes("peach"))
-            {
-                this.selectedFruitType.splice(this.selectedFruitType.indexOf("peach"));
-            }
-        }
-        else if (this.command[2] > 0) {
-            if(!this.selectedFruitType.includes("peach"))
-            {
-                this.selectedFruitType.push("peach");
-            }
-        }
-        for (let index = 0; index < this.selectedFruitType.length; index++) {
-            const element = this.selectedFruitType[index];
-            console.log(element);
-        }
-    }
 
     manageCommand(category: string) {
         if(this.selectedLevel != "PE") {
@@ -152,10 +130,8 @@ export class DashboardComponent implements OnInit {
         {
             this.selectedFruitType.push(category);
         }
-        for (let index = 0; index < this.selectedFruitType.length; index++) {
-            const element = this.selectedFruitType[index];
-            console.log(element);
-        }
+        console.log(this.selectedFruitType);
+        
     }
 
     buttonClicked(action){
