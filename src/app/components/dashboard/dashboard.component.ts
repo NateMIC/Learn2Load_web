@@ -142,6 +142,13 @@ export class DashboardComponent implements OnInit {
         else if(this.command[0] == 0 && this.command[1] == 0 && this.command[2] == 0)
             this.errorSelectedFruit = "Vous devez ajouter au moins une caisse de fruits à la commande";
         else {
+            var watermelon = this.selectedFruitType.includes("watermelon");
+            var lemon = this.selectedFruitType.includes("lemon");
+            var peach = this.selectedFruitType.includes("peach");
+            console.log("Watermelon: " + watermelon);
+            console.log("Lemon: " + lemon);
+            console.log("Peach: " + peach);
+            
             this.errorSelectedFruit = "";
             localStorage.setItem("selectedCasque", this.selectedCasque1);
             var time = (this.minutes * 60) + this.secondes;
@@ -149,8 +156,12 @@ export class DashboardComponent implements OnInit {
                 "source" : this.signalRService.sourceId,
                 "destination" : localStorage.getItem("selectedCasque"),
                 "action" : action,
-                "fruitsTypes" : this.selectedFruitType,
-                "command" : this.command,
+                "watermelon": watermelon,
+                "peach": peach,
+                "lemon": lemon,
+                "nbWatermelon": this.command[0],
+                "nbLemon": this.command[1],
+                "nbPeach": this.command[2],
                 "errorLevel" : this.errorLevel,
                 "successLevel" : this.successLevel,
                 "time" : time
