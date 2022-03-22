@@ -34,35 +34,28 @@ export class SignalRService {
   public getConnectionId = () => {
     this.hubConnection.invoke('getconnectionid').then(
       (data) => {
-          this.connectionId = data;
-          console.log(this.connectionId);
-          
-          var jsonToSend = {
-            "source" : this.sourceId,
-          }
-          var jsonString = JSON.stringify(jsonToSend);
-          this.broadcastHoloData(jsonString);
+          this.sourceId = data;
         }
     ); 
   }
 
-  public addTransferDataListener = () => {
-    this.hubConnection.on('transferchartdata', (data) => {
-      this.data = data;
+  // public addTransferDataListener = () => {
+  //   this.hubConnection.on('transferchartdata', (data) => {
+  //     this.data = data;
       
-    })
-  }
+  //   })
+  // }
 
   //used to send data to the server
-  public broadcastHoloData = (data) => {
+  public broadcastHoloData = async (data) => {    
     this.data = data;
-    this.hubConnection.invoke('broadcastholodata', this.data, this.connectionId)
+    this.hubConnection.invoke('broadcastholodata', this.data)
     .catch(err => this.callAppComponentFunctionToDisplayToast("erreur"));
   }
 
   //used to receive data from the server
-  public addBroadcastChartDataListener = () => {
-    this.hubConnection.on('broadcastholodata', (data) => {
+  public addBroadcastDataListener = () => {
+    this.hubConnection.on('broadcastdatatoangular', (data) => {
       console.log("Données recues : " + data);
       
       this.bradcastedData = data;
@@ -78,6 +71,5 @@ export class SignalRService {
   }
 
   constructor() { 
-    this.sourceId = "angular" + uuidv4();
   }
 }

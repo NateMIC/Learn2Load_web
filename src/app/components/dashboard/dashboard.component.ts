@@ -57,8 +57,15 @@ export class DashboardComponent implements OnInit {
         this.changeValuesBasedOnTheSelectedLevel("DE");
 
         this.signalRService.customObservable.subscribe((data) => {
-            if(data != "erreur" && data.destination.includes("Angular_DashboardComponent")) {
+            console.log(data);
+            
+            if(data != "erreur" && data.component != null && data.component == "Angular_DashboardComponent") {
                 this.toggleFormationManagmentButtons();
+            }
+            else if(data.isLaunched != null){
+                console.log("test");
+                
+                this.isFormationLaunched = data.isLaunched;
             }
           }
         );
@@ -177,6 +184,18 @@ export class DashboardComponent implements OnInit {
         this.isFormationLaunched = !this.isFormationLaunched;
         console.log("formation lancée : " + this.isFormationLaunched);
         
+    }
+
+    checkIfFormationLaunched(event){
+        localStorage.setItem("selectedCasque", this.selectedCasque1);        
+        var jsonToSend = {
+            "source" : this.signalRService.sourceId,
+            "destination" : event.value,
+            "action" : "isFormationLaunched"
+        }
+        var jsonString = JSON.stringify(jsonToSend); 
+        
+        this._sharedService.emitChange(jsonString);
     }
 
 }

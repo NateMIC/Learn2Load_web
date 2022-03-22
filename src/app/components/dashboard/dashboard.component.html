@@ -7,8 +7,7 @@
                 <button pButton pRipple type="button" id="restartButton" [attr.disabled]="!isFormationLaunched ? 'disabled' : null" label="Redémarrer la formation" class="p-button-warning mr-2 mb-2" (click)="buttonClicked('restart')"></button>
             </div>
             <div class="mb-4">
-                <p-dropdown [options]="casques" [(ngModel)]="selectedCasque1" placeholder="Sélectionnez un casque" optionLabel=""
-    [showClear]="true"></p-dropdown>
+                <p-dropdown [options]="casques" [(ngModel)]="selectedCasque1" placeholder="Sélectionnez un casque" optionLabel="" [showClear]="true" (onChange)="checkIfFormationLaunched($event)"></p-dropdown>
             </div>
             <div class="mb-4">
                 <p-selectButton [options]="learninglevel" [(ngModel)]="selectedLevel" optionLabel="label" optionValue="value" (onChange)="changeValuesBasedOnTheSelectedLevel(selectedLevel)"></p-selectButton>

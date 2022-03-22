@@ -21,16 +21,17 @@ export class AppComponent implements OnInit{
         this.primengConfig.ripple = true;
         document.documentElement.style.fontSize = '14px';
         this.signalRService.startConnection();
-        this.signalRService.addTransferDataListener();
-        this.signalRService.addBroadcastChartDataListener();
+        // this.signalRService.addTransferDataListener();
+        this.signalRService.addBroadcastDataListener();
         this.signalRService.customObservable.subscribe((data) => {
             if(data == "erreur"){
                 this.alertErrorLaunchFormation();
             }
-            else if(data.destination.includes("_StressTest")) {
+            
+            else if(data.component != null && data.component.includes("_StressTest")) {
                 this.alertStressTestFinished(data);
             }
-            else if(data.destination.includes("Angular_AppComponent")) {
+            else if(data.component != null && data.component == "Angular_AppComponent") {
                 this.alertFormationFinished(data);
             }
           }
