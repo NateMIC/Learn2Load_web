@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignalRService {
 
   private hubConnection: signalR.HubConnection;
-  public data: string;
-  public bradcastedData: string;
-  public connectionId : string;
   public sourceId;
-
-
   private customSubject = new Subject<any>();
   customObservable = this.customSubject.asObservable();
 
@@ -39,26 +33,15 @@ export class SignalRService {
     ); 
   }
 
-  // public addTransferDataListener = () => {
-  //   this.hubConnection.on('transferchartdata', (data) => {
-  //     this.data = data;
-      
-  //   })
-  // }
-
   //used to send data to the server
   public broadcastHoloData = async (data) => {    
-    this.data = data;
-    this.hubConnection.invoke('broadcastholodata', this.data)
-    .catch(err => this.callAppComponentFunctionToDisplayToast("erreur"));
+    this.hubConnection.invoke('broadcastholodata', data);
   }
 
   //used to receive data from the server
   public addBroadcastDataListener = () => {
     this.hubConnection.on('broadcastdatatoangular', (data) => {
       console.log("Données recues : " + data);
-      
-      this.bradcastedData = data;
       var jsonObject = JSON.parse(data);
       if(jsonObject.source == localStorage.getItem("selectedCasque")){
         this.callAppComponentFunctionToDisplayToast(jsonObject);

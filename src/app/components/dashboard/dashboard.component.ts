@@ -56,16 +56,26 @@ export class DashboardComponent implements OnInit {
 
         this.changeValuesBasedOnTheSelectedLevel("DE");
 
-        this.signalRService.customObservable.subscribe((data) => {
-            console.log(data);
-            
+        this.signalRService.customObservable.subscribe((data) => {           
             if(data != "erreur" && data.component != null && data.component == "Angular_DashboardComponent") {
                 this.toggleFormationManagmentButtons();
             }
-            else if(data.isLaunched != null){
-                console.log("test");
-                
+            else if(data.isLaunched != null){                
                 this.isFormationLaunched = data.isLaunched;
+                this.successLevel = data.successLevel;
+                this.errorLevel = data.errorLevel;
+                this.command[0] = data.nbWatermelon;
+                this.command[1] = data.nbLemon;
+                this.command[2] = data.nbPeach;
+                this.selectedFruitType = [];
+                if(data.watermelon)
+                    this.selectedFruitType.push("watermelon");
+                if(data.lemon)
+                    this.selectedFruitType.push("lemon");
+                if(data.peach)
+                    this.selectedFruitType.push("peach");
+                this.secondes = data.time%60
+                this.minutes = Math.floor(data.time/60)
             }
           }
         );
@@ -141,9 +151,7 @@ export class DashboardComponent implements OnInit {
         
     }
 
-    buttonClicked(action){
-        console.log(this.command);
-        
+    buttonClicked(action){        
         if(this.selectedFruitType.length == 0)
             this.errorSelectedFruit = "Vous devez sélectionner au moins 1 type de fruit";
         else if(this.command[0] == 0 && this.command[1] == 0 && this.command[2] == 0)

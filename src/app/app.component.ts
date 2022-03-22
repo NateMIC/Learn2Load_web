@@ -24,11 +24,11 @@ export class AppComponent implements OnInit{
         // this.signalRService.addTransferDataListener();
         this.signalRService.addBroadcastDataListener();
         this.signalRService.customObservable.subscribe((data) => {
-            if(data == "erreur"){
-                this.alertErrorLaunchFormation();
-            }
+            // if(data == "erreur"){
+            //     this.alertErrorLaunchFormation();
+            // }
             
-            else if(data.component != null && data.component.includes("_StressTest")) {
+            if(data.component != null && data.component.includes("_StressTest")) {
                 this.alertStressTestFinished(data);
             }
             else if(data.component != null && data.component == "Angular_AppComponent") {
@@ -66,10 +66,10 @@ export class AppComponent implements OnInit{
         }
     }
 
-    public alertErrorLaunchFormation(){
-        var message = "La formation n'a pas pu être lancée car le client n'est pas accessible";
-        this.messageService.add({key: 'br', severity:'error', summary: 'Erreur', detail: message, sticky: true});
-    }
+    // public alertErrorLaunchFormation(){
+    //     var message = "La formation n'a pas pu être lancée car le client n'est pas accessible";
+    //     this.messageService.add({key: 'br', severity:'error', summary: 'Erreur', detail: message, sticky: true});
+    // }
 
     
 }
