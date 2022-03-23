@@ -1,0 +1,35 @@
+<div class="grid">
+    <div class="col-12 lg:col-8 xl:col-8">
+        <div class="card mb-0">
+            <p-table responsiveLayout="scroll" [value]="devices">
+                <ng-template pTemplate="caption">
+                    <div class="grid">
+                        <div class="col-12 md:col-4 my-auto">Périphériques</div>
+                        <div class="col-12 md:col-5 col-offset-3 my-auto">
+                            <div class="p-inputgroup">
+                                <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>    
+                                <input type="text" pInputText ngModel="newDeviceName" placeholder="Nom du périphérique">       
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th style="text-align: center;">Nom </th>
+                        <th style="text-align: center;">Statut</th>
+                        <th style="text-align: center;">En formation</th>
+                        <th style="text-align: center;">Supprimer</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-device let-columns="columns">
+                    <tr>
+                        <td>{{device.name}}</td>
+                        <td style="text-align: center;">Connected</td>
+                        <td style="text-align: center;">In formation</td>
+                        <td style="text-align: center;"><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text"></button></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

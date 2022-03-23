@@ -108,6 +108,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
 import { SignalRService } from './service/signal-r.service';
 import { MessageService } from 'primeng/api';
+import { DeviceManagementComponent } from './components/device-management/device-management.component';
 
 @NgModule({
     imports: [
@@ -212,6 +213,7 @@ import { MessageService } from 'primeng/api';
         ErrorComponent,
         NotfoundComponent,
         AccessComponent,
+        DeviceManagementComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

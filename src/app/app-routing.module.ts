@@ -6,6 +6,7 @@ import { AppMainComponent } from './app.main.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
+import { DeviceManagementComponent } from './components/device-management/device-management.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -13,6 +14,7 @@ import { AccessComponent } from './components/access/access.component';
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: DashboardComponent},
+                    {path: 'devices', component: DeviceManagementComponent},
                     {path: 'uikit/menu', loadChildren: () => import('./components/menus/menus.module').then(m => m.MenusModule)},
                     {path: 'pages/empty', component: EmptyComponent},
                 ],
