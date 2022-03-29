@@ -46,9 +46,7 @@ export class DeviceManagementComponent implements OnInit {
     for (let index = 0; index < this.devices.length; index++) {
       const element = this.devices[index];
       if(element.id != index) {
-        console.log(this.devices[index]);
         element.id = index;
-        console.log(this.devices[index]);
       }
     }
   }
