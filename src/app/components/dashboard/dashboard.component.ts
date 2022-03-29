@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
-import { SharedService } from 'src/app/service/shared.service';
-import { SignalRService } from 'src/app/service/signal-r.service';
+import { SharedService } from '../../service/shared.service';
+import { SignalRService } from '../../service/signal-r.service';
  
 @Component({
     templateUrl: './dashboard.component.html',
