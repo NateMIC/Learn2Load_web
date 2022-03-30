@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
             if(data != "erreur" && data.component != null && data.component == "Angular_DashboardComponent") {
                 this.toggleFormationManagmentButtons();
             }
-            else if(data.isLaunched != null){                
+            else if(data.isLaunched && data.component != "Angular_AppComponent_StressTest"){                
                 this.isFormationLaunched = data.isLaunched;
                 this.successLevel = data.successLevel;
                 this.errorLevel = data.errorLevel;
