@@ -160,9 +160,10 @@ export class DashboardComponent implements OnInit {
             var watermelon = this.selectedFruitType.includes("watermelon");
             var lemon = this.selectedFruitType.includes("lemon");
             var peach = this.selectedFruitType.includes("peach");
-            console.log("Watermelon: " + watermelon);
-            console.log("Lemon: " + lemon);
-            console.log("Peach: " + peach);
+            if (!watermelon) this.command[0] = 0;
+            if (!lemon) this.command[1] = 0;
+            if (!peach) this.command[2] = 0;
+
             
             this.errorSelectedFruit = "";
             localStorage.setItem("selectedCasque", this.selectedCasque1);
