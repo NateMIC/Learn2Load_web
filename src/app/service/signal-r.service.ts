@@ -16,6 +16,7 @@ export class SignalRService {
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
     .withUrl(environment.urlServer) //Server address
+    .withAutomaticReconnect()
     .build();
 
     this.hubConnection
@@ -34,7 +35,7 @@ export class SignalRService {
   }
 
   //used to send data to the server
-  public broadcastHoloData = async (data) => {    
+  public broadcastHoloData = async (data) => {  
     this.hubConnection.invoke('broadcastholodata', data);
   }
 
