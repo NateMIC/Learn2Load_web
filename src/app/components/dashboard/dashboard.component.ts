@@ -28,6 +28,10 @@ export class DashboardComponent implements OnInit {
     casques: string[];
     selectedCasque1: string;
 
+    launchBtn: HTMLButtonElement;
+    stopBtn: HTMLButtonElement;
+    restartBtn: HTMLButtonElement;
+
     //Contain the command in this order -> watermelon, lemon, peach
     command: number[] = [0,0,0];
     fruitType: string[] = ["watermelon", "lemon", "peach"];
@@ -79,6 +83,11 @@ export class DashboardComponent implements OnInit {
             }
           }
         );
+        this.launchBtn = document.getElementById("launchButton") as HTMLButtonElement;
+        this.stopBtn = document.getElementById("stopButton") as HTMLButtonElement;
+        this.restartBtn = document.getElementById("restartButton") as HTMLButtonElement;
+        this.stopBtn.disabled = true;
+        this.restartBtn.disabled = true;
     }
 
     changeValuesBasedOnTheSelectedLevel(value:string) {
@@ -191,6 +200,9 @@ export class DashboardComponent implements OnInit {
 
     toggleFormationManagmentButtons(){
         this.isFormationLaunched = !this.isFormationLaunched;
+        this.launchBtn.disabled = this.isFormationLaunched;
+        this.stopBtn.disabled = !this.isFormationLaunched;
+        this.restartBtn.disabled = !this.isFormationLaunched;
         console.log("formation lancée : " + this.isFormationLaunched);
         
     }
