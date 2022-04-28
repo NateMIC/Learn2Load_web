@@ -47,7 +47,6 @@ export class DashboardComponent implements OnInit {
             {label: 'Personnalisé', value: 'PE'}
         ];
         //If a new device must be added, just add the device name of this one
-        //TODO Maybe change the access to a device by another way than the name because there could be redundancy
         this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P", "HOLOLENS-0V1C1L", "MSI-HOME", "DESKTOP-B18594V"];
         this.selectedCasque1 = this.casques[0];
     }
@@ -62,10 +61,14 @@ export class DashboardComponent implements OnInit {
 
         this.signalRService.customObservable.subscribe((data) => {           
             if(data != "erreur" && data.component != null && data.component == "Angular_DashboardComponent") {
+                this.isFormationLaunched = data.isLaunched;
                 this.toggleFormationManagmentButtons();
             }
             else if(data.isLaunched && data.component != "Angular_AppComponent_StressTest"){                
                 this.isFormationLaunched = data.isLaunched;
+                this.launchBtn.disabled = this.isFormationLaunched;
+                this.stopBtn.disabled = !this.isFormationLaunched;
+                this.restartBtn.disabled = !this.isFormationLaunched;
                 this.successLevel = data.successLevel;
                 this.errorLevel = data.errorLevel;
                 this.command[0] = data.nbWatermelon;
@@ -199,7 +202,6 @@ export class DashboardComponent implements OnInit {
     }
 
     toggleFormationManagmentButtons(){
-        this.isFormationLaunched = !this.isFormationLaunched;
         this.launchBtn.disabled = this.isFormationLaunched;
         this.stopBtn.disabled = !this.isFormationLaunched;
         this.restartBtn.disabled = !this.isFormationLaunched;
@@ -208,12 +210,18 @@ export class DashboardComponent implements OnInit {
     }
 
     checkIfFormationLaunched(event){
+        this.launchBtn.disabled = false;
+        this.stopBtn.disabled = true;
+        this.restartBtn.disabled = true;
+        this.changeValuesBasedOnTheSelectedLevel("DE");
         localStorage.setItem("selectedCasque", this.selectedCasque1);        
         var jsonToSend = {
             "source" : this.signalRService.sourceId,
             "destination" : event.value,
             "action" : "isFormationLaunched"
         }
+        console.log(jsonToSend);
+        
         var jsonString = JSON.stringify(jsonToSend); 
         
         this._sharedService.emitChange(jsonString);

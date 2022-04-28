@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,16 @@ export class SignalRService {
     this.hubConnection.invoke('getconnectionid').then(
       (data) => {
           this.sourceId = data;
+          var jsonToSend = {
+            "source" : this.sourceId,
+            "destination" :localStorage.getItem("selectedCasque"),
+            "action" : "isFormationLaunched"
+        }
+        console.log(jsonToSend);
+        
+        var jsonString = JSON.stringify(jsonToSend); 
+        
+        this._sharedService.emitChange(jsonString);
         }
     ); 
   }
@@ -54,6 +65,6 @@ export class SignalRService {
     this.customSubject.next(jsonObject);
   }
 
-  constructor() { 
+  constructor(private _sharedService: SharedService) { 
   }
 }
