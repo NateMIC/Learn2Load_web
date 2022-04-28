@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
         //If a new device must be added, just add the device name of this one
         this.casques = ["LENOVO-LEGION-Y","LAPTOP-VV33544P", "HOLOLENS-0V1C1L", "MSI-HOME", "DESKTOP-B18594V"];
         this.selectedCasque1 = this.casques[0];
+        localStorage.setItem("selectedCasque", this.selectedCasque1);
     }
 
     ngOnInit() {
