@@ -55,9 +55,7 @@ export class SignalRService {
     this.hubConnection.on('broadcastdatatoangular', (data) => {
       console.log("Données recues : " + data);
       var jsonObject = JSON.parse(data);
-      if(jsonObject.source == localStorage.getItem("selectedCasque")){
-        this.callAppComponentFunctionToDisplayToast(jsonObject);
-      }
+      this.callAppComponentFunctionToDisplayToast(jsonObject);
     })
   }
 
