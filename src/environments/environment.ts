@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlServer: "https://learn2loadsignalr.azurewebsites.net/holo"
+  urlServer: "https://learn2loadserver20220506131712.azurewebsites.net/holo"
   // urlServer: "https://localhost:5001/holo"
 };
 
