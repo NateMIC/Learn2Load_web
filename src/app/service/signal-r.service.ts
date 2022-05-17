@@ -47,6 +47,7 @@ export class SignalRService {
 
   //used to send data to the server
   public broadcastHoloData = async (data) => {  
+    console.log("Données envoyées : " + data);
     this.hubConnection.invoke('broadcastholodata', data);
   }
 
