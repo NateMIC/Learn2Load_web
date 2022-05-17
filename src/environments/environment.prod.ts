@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlServer: "https://learn2loadserver20220516141430.azurewebsites.net/holo"
+  urlServer: "https://learn2loadserver20220517144651.azurewebsites.net/holo"
 };
